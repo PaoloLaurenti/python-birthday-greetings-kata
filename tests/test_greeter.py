@@ -4,12 +4,12 @@ from greeter.greeter import Greeter
 from greeter.greeting import Greeting
 from tests.support.clock_test_double import ClockTestDouble
 from tests.support.friends_gateway_test_double import FriendsGatewayTestDouble
-from tests.support.greetings_notifier_spy import GreetingsNotifierSpy
+from tests.support.greetings_notifier_test_double import GreetingsNotifierTestDouble
 
 
 class TestGreeter:
     def test_greets_many_friends_on_their_birthdays(self):
-        friends_gateway_test_double = FriendsGatewayTestDouble()
+        friends_gateway_double = FriendsGatewayTestDouble()
         stubbed_friends = [
             Friend(
                 name="Franco Franchi",
@@ -27,15 +27,15 @@ class TestGreeter:
                 birthday=date(1980, 4, 22),
             ),
         ]
-        friends_gateway_test_double.stub_friends(stubbed_friends)
-        clock_test_double = ClockTestDouble()
-        clock_test_double.stub_local_tz_today(date(2023, 4, 22))
-        greetings_notifier_test_double = GreetingsNotifierSpy()
-        greeter = Greeter(friends_gateway_test_double, clock_test_double, greetings_notifier_test_double)
+        friends_gateway_double.stub_friends(stubbed_friends)
+        clock_double = ClockTestDouble()
+        clock_double.stub_local_tz_today(date(2023, 4, 22))
+        greetings_notifier_double = GreetingsNotifierTestDouble()
+        greeter = Greeter(friends_gateway_double, clock_double, greetings_notifier_double)
 
         greeter.send_greetings()
 
-        notified_greetings = greetings_notifier_test_double.get_notified_greetings()
+        notified_greetings = greetings_notifier_double.get_spied_notified_greetings()
         expected_greeting_1 = Greeting(
             name="Franco Franchi",
             email="franco@franchi.com",
