@@ -23,9 +23,5 @@ class Greeter:
         )
         self.greetings_notifier.notify(greetings)
 
-
-
     def is_birthday(self, date, birthday):
         return birthday.day == date.day and birthday.month == date.month
-
-
