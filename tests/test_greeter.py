@@ -78,3 +78,36 @@ class TestGreeter:
 
         notified_greetings = greetings_notifier_double.get_spied_notified_greetings()
         assert len(notified_greetings) == 0
+
+    def test_29th_feb_birthday_on_leap_year(self):
+        friends_gateway_double = FriendsGatewayTestDouble()
+        stubbed_friends = [
+            Friend(
+                name="Franco Franchi",
+                email="franco@franchi.com",
+                birthday=date(1976, 2, 29),
+            ),
+            Friend(
+                name="Marco Marchi",
+                email="marco@marchi.com",
+                birthday=date(1980, 5, 11),
+            )
+        ]
+        friends_gateway_double.stub_friends(stubbed_friends)
+        clock_double = ClockTestDouble()
+        clock_double.stub_local_tz_today(date(2024, 2, 29))
+        greetings_notifier_double = GreetingsNotifierTestDouble()
+        greeter = Greeter(
+            friends_gateway_double, clock_double, greetings_notifier_double
+        )
+
+        greeter.send_greetings()
+
+        notified_greetings = greetings_notifier_double.get_spied_notified_greetings()
+        expected_greeting_1 = Greeting(
+            name="Franco Franchi",
+            email="franco@franchi.com",
+            birthday=date(1976, 2, 29)
+        )
+        assert len(notified_greetings) == 1
+        assert notified_greetings[0] == expected_greeting_1
