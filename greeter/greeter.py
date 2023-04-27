@@ -24,11 +24,16 @@ class Greeter:
         self.greetings_notifier.notify(greetings)
 
     def is_birthday(self, date, birthday):
-        return (birthday.day == date.day and birthday.month == date.month) or (
+        return (
+            birthday.day == date.day and birthday.month == date.month
+        ) or self.is_29th_feb_birthday_on_28th_feb_of_non_leap_year(date, birthday)
+
+    def is_29th_feb_birthday_on_28th_feb_of_non_leap_year(self, date, birthday):
+        return (
             not self.is_leap(date.year)
             and date.day == 28
             and birthday.day == 29
-            and birthday.month == date.month
+            and date.month == 2
             and birthday.month == 2
         )
 
