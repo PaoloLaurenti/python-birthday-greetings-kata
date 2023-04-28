@@ -1,5 +1,5 @@
 from datetime import date
-from greeter.friend import Friend
+from greeter.friends.friend import Friend
 from greeter.greeter import Greeter
 from greeter.greeting import Greeting
 from tests.support.clock_test_double import ClockTestDouble
