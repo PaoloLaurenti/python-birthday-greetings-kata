@@ -1,5 +1,5 @@
-from greeter.greeting import Greeting
-from greeter.greetings_notifier import GreetingsNotifier
+from greeter.greetings.greeting import Greeting
+from greeter.greetings.greetings_notifier import GreetingsNotifier
 
 
 class Greeter:

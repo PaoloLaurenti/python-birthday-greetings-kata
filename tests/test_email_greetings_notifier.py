@@ -1,5 +1,5 @@
 from datetime import date
-from greeter.greeting import Greeting
+from greeter.greetings.greeting import Greeting
 from greeter.greetings.emails.email import Email
 from greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
 from tests.support.fake_mailer import FakeMailer
