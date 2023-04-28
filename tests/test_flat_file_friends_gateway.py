@@ -33,4 +33,9 @@ class TestFlatFileFriendsGateway:
             )
 
     def test_get_no_friends_data_from_empty_file(self):
-        pass
+        with tempfile.NamedTemporaryFile() as tmp:
+            gateway = FlatFileFriendsGateway(tmp.name)
+
+            friends = gateway.get_friends()
+
+            assert len(friends) == 0
