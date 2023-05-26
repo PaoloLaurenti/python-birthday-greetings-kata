@@ -6,3 +6,4 @@ class Friend:
     name: str
     email: str
     birthday: date
+    phone_number: str

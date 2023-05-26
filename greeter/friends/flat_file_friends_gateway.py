@@ -18,4 +18,5 @@ class FlatFileFriendsGateway(FriendsGateway):
         first_name = line_data[1]
         birthday = datetime.strptime(line_data[2], "%Y/%m/%d").date()
         email = line_data[3]
-        return Friend(name=f"{first_name} {last_name}", email=email, birthday=birthday)
+        phone_number = line_data[4]
+        return Friend(name=f"{first_name} {last_name}", email=email, birthday=birthday, phone_number=phone_number)

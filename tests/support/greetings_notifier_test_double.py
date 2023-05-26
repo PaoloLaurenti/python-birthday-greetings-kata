@@ -1,4 +1,3 @@
-from greeter.greetings.greeting import Greeting
 from greeter.greetings.greetings_notifier import GreetingsNotifier
 
 class GreetingsNotifierTestDouble(GreetingsNotifier):

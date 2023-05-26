@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from datetime import date
+from typing import Optional
 
 @dataclass(frozen=True)
 class Greeting():
 		name: str
 		email: str
 		birthday: date
+		phone_number: str = None

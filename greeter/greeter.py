@@ -18,10 +18,10 @@ class Greeter:
             friends,
         )
         greetings = map(
-            lambda f: Greeting(name=f.name, email=f.email, birthday=f.birthday),
+            lambda f: Greeting(name=f.name, email=f.email, birthday=f.birthday, phone_number=f.phone_number),
             birthday_friends,
         )
-        self.greetings_notifier.notify(greetings)
+        self.greetings_notifier.notify(list(greetings))
 
     def is_birthday(self, date, birthday):
         return (

@@ -15,16 +15,19 @@ class TestGreeter:
                 name="Franco Franchi",
                 email="franco@franchi.com",
                 birthday=date(1974, 4, 22),
+                phone_number="3331112223"
             ),
             Friend(
                 name="Marco Marchi",
                 email="marco@marchi.com",
                 birthday=date(1980, 5, 11),
+                phone_number="3339998881"
             ),
             Friend(
                 name="Luciana Luciani",
                 email="luciana@luciani.com",
                 birthday=date(1980, 4, 22),
+                phone_number="3332223334"
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
@@ -42,11 +45,13 @@ class TestGreeter:
             name="Franco Franchi",
             email="franco@franchi.com",
             birthday=date(1974, 4, 22),
+            phone_number="3331112223"
         )
         expected_greeting_2 = Greeting(
             name="Luciana Luciani",
             email="luciana@luciani.com",
             birthday=date(1980, 4, 22),
+            phone_number="3332223334"
         )
         assert len(notified_greetings) == 2
         assert notified_greetings[0] == expected_greeting_1
@@ -59,11 +64,13 @@ class TestGreeter:
                 name="Franco Franchi",
                 email="franco@franchi.com",
                 birthday=date(1974, 4, 22),
+                phone_number="3331112223"
             ),
             Friend(
                 name="Marco Marchi",
                 email="marco@marchi.com",
                 birthday=date(1980, 5, 11),
+                phone_number="3331112223"
             )
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
@@ -86,11 +93,13 @@ class TestGreeter:
                 name="Franco Franchi",
                 email="franco@franchi.com",
                 birthday=date(1976, 2, 29),
+                phone_number="3331112223"
             ),
             Friend(
                 name="Marco Marchi",
                 email="marco@marchi.com",
                 birthday=date(1980, 5, 11),
+                phone_number="3339991114"
             )
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
@@ -107,7 +116,8 @@ class TestGreeter:
         expected_greeting_1 = Greeting(
             name="Franco Franchi",
             email="franco@franchi.com",
-            birthday=date(1976, 2, 29)
+            birthday=date(1976, 2, 29),
+            phone_number="3331112223"
         )
         assert len(notified_greetings) == 1
         assert notified_greetings[0] == expected_greeting_1
@@ -119,11 +129,13 @@ class TestGreeter:
                 name="Franco Franchi",
                 email="franco@franchi.com",
                 birthday=date(1976, 2, 29),
+                phone_number="3331112223"
             ),
             Friend(
                 name="Marco Marchi",
                 email="marco@marchi.com",
                 birthday=date(1980, 5, 11),
+                phone_number="3339998884"
             )
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
@@ -140,7 +152,8 @@ class TestGreeter:
         expected_greeting_1 = Greeting(
             name="Franco Franchi",
             email="franco@franchi.com",
-            birthday=date(1976, 2, 29)
+            birthday=date(1976, 2, 29),
+            phone_number="3331112223"
         )
         assert len(notified_greetings) == 1
         assert notified_greetings[0] == expected_greeting_1
@@ -152,11 +165,13 @@ class TestGreeter:
                 name="Franco Franchi",
                 email="franco@franchi.com",
                 birthday=date(1976, 2, 28),
+                phone_number="3331112223"
             ),
             Friend(
                 name="Marco Marchi",
                 email="marco@marchi.com",
                 birthday=date(1980, 5, 11),
+                phone_number="3339998884"
             )
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
@@ -173,7 +188,8 @@ class TestGreeter:
         expected_greeting_1 = Greeting(
             name="Franco Franchi",
             email="franco@franchi.com",
-            birthday=date(1976, 2, 28)
+            birthday=date(1976, 2, 28),
+            phone_number="3331112223"
         )
         assert len(notified_greetings) == 1
         assert notified_greetings[0] == expected_greeting_1
