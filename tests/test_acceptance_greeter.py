@@ -5,6 +5,7 @@ from greeter.greeter_engine import GreeterEngine
 from greeter.greetings.emails.email import Email
 from greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
 from greeter.greetings.greetings_notifier_announcer import GreetingsNotifierAnnouncer
+from greeter.greetings.logs.greetings_notifier_logger import GreetingsNotifierLogger
 from greeter.greetings.sms.sms import Sms
 from greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
 from tests.support.fake_immutable_clock import FakeImmutableClock
@@ -36,8 +37,9 @@ class TestAcceptanceGreeter:
                 from_phone_number="3225554447", sms_service=sms_service_double
             )
             greetings_notifier_announcer = GreetingsNotifierAnnouncer([email_greetings_notifier, sms_greetings_notifier])
+            greetings_notifier_logger = GreetingsNotifierLogger(greetings_notifier_announcer)
 
-            greeter = GreeterEngine(friends_gateway, immutable_clock, greetings_notifier_announcer)
+            greeter = GreeterEngine(friends_gateway, immutable_clock, greetings_notifier_logger)
 
             greeter.send_greetings()
 

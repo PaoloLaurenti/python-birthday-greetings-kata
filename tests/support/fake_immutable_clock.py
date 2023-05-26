@@ -1,5 +1,3 @@
-from pydoc import classname
-
 from greeter.time.clock import Clock
 
 

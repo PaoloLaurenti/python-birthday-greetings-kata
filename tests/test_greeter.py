@@ -7,7 +7,7 @@ from tests.support.friends_gateway_test_double import FriendsGatewayTestDouble
 from tests.support.greetings_notifier_test_double import GreetingsNotifierTestDouble
 
 
-class TestGreeter:
+class TestGreeterEngine:
     def test_greets_many_friends_on_their_birthdays(self):
         friends_gateway_double = FriendsGatewayTestDouble()
         stubbed_friends = [
@@ -141,11 +141,11 @@ class TestGreeter:
         clock_double = ClockTestDouble()
         clock_double.stub_local_tz_today(date(2023, 2, 28))
         greetings_notifier_double = GreetingsNotifierTestDouble()
-        greeter = GreeterEngine(
+        greeter_engine = GreeterEngine(
             friends_gateway_double, clock_double, greetings_notifier_double
         )
 
-        greeter.send_greetings()
+        greeter_engine.send_greetings()
 
         notified_greetings = greetings_notifier_double.get_spied_notified_greetings()
         assert notified_greetings == [
