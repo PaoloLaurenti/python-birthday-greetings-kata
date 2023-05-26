@@ -10,9 +10,9 @@ class FlatFileFriendsGateway(FriendsGateway):
     def get_friends(self):
         with open(self.file_path) as f:
             lines = f.readlines()[1:]
-            return list(map(lambda l: self.line_to_friend(l), lines))
+            return list(map(lambda l: self._line_to_friend(l), lines))
 
-    def line_to_friend(self, line):
+    def _line_to_friend(self, line):
         line_data = list(map(lambda d: d.strip(), line.split(",")))
         last_name = line_data[0]
         first_name = line_data[1]

@@ -6,9 +6,9 @@ from tests.support.greetings_notifier_test_double import GreetingsNotifierTestDo
 
 class TestGreetingsNotifierAnnouncer:
     def test_notify_all_the_given_notifiers(self):
-        greetings_notifier_spy_1 = GreetingsNotifierTestDouble()
-        greetings_notifier_spy_2 = GreetingsNotifierTestDouble()
-        announcer = GreetingsNotifierAnnouncer([greetings_notifier_spy_1, greetings_notifier_spy_2])
+        greetings_notifier_double_1 = GreetingsNotifierTestDouble()
+        greetings_notifier_double_2 = GreetingsNotifierTestDouble()
+        announcer = GreetingsNotifierAnnouncer([greetings_notifier_double_1, greetings_notifier_double_2])
 
         greetings = [
             Greeting(
@@ -26,8 +26,6 @@ class TestGreetingsNotifierAnnouncer:
         ]
         announcer.notify(greetings)
 
-        greetings_notifier_1 = greetings_notifier_spy_1.get_spied_notified_greetings()
-        greetings_notifier_2 = greetings_notifier_spy_2.get_spied_notified_greetings()
-        assert greetings_notifier_1 == greetings
-        assert greetings_notifier_2 == greetings
+        assert greetings_notifier_double_1.get_spied_notified_greetings() == greetings
+        assert greetings_notifier_double_2.get_spied_notified_greetings() == greetings
 

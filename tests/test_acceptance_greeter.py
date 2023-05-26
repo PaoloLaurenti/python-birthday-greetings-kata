@@ -1,14 +1,14 @@
 from datetime import date
 import tempfile
-from greeter.friends.flat_file_friends_gateway import FlatFileFriendsGateway
-from greeter.greeter import Greeter
+from greeter.friends.flat_file.flat_file_friends_gateway import FlatFileFriendsGateway
+from greeter.greeter_engine import GreeterEngine
 from greeter.greetings.emails.email import Email
 from greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
 from greeter.greetings.greetings_notifier_announcer import GreetingsNotifierAnnouncer
 from greeter.greetings.sms.sms import Sms
 from greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
 from tests.support.fake_immutable_clock import FakeImmutableClock
-from tests.support.fake_mailer import FakeMailer
+from tests.support.mailer_test_double import MailerTestDouble
 from tests.support.sms_service_test_double import SmsServiceTestDouble
 
 
@@ -26,23 +26,23 @@ class TestAcceptanceGreeter:
             tmp.seek(0)
 
             friends_gateway = FlatFileFriendsGateway(tmp.name)
-            clock = FakeImmutableClock(date(2023, 4, 22))
-            mailer = FakeMailer()
+            immutable_clock = FakeImmutableClock(date(2023, 4, 22))
+            mailer_double = MailerTestDouble()
             email_greetings_notifier = EmailGreetingsNotifier(
-                email_from="greeter@kata.com", mailer=mailer
+                email_from="greeter@kata.com", mailer=mailer_double
             )
-            sms_service_spy = SmsServiceTestDouble()
+            sms_service_double = SmsServiceTestDouble()
             sms_greetings_notifier = SmsGreetingsNotifier(
-                from_phone_number="3225554447", sms_service=sms_service_spy
+                from_phone_number="3225554447", sms_service=sms_service_double
             )
             greetings_notifier_announcer = GreetingsNotifierAnnouncer([email_greetings_notifier, sms_greetings_notifier])
 
-            greeter = Greeter(friends_gateway, clock, greetings_notifier_announcer)
+            greeter = GreeterEngine(friends_gateway, immutable_clock, greetings_notifier_announcer)
 
             greeter.send_greetings()
 
-            emails = mailer.get_sent_emails()
-            sms = sms_service_spy.get_sent_sms()
+            emails = mailer_double.get_spied_sent_emails()
+            sms = sms_service_double.get_spied_sent_sms()
             assert emails == [
                 Email(
                     from_address="greeter@kata.com",

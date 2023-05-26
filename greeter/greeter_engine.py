@@ -2,7 +2,7 @@ from greeter.greetings.greeting import Greeting
 from greeter.greetings.greetings_notifier import GreetingsNotifier
 
 
-class Greeter:
+class GreeterEngine:
     greetings_notifier: GreetingsNotifier
 
     def __init__(self, friends_gateway, clock, greetings_notifier):
@@ -14,7 +14,7 @@ class Greeter:
         local_tz_today = self.clock.local_tz_today()
         friends = self.friends_gateway.get_friends()
         birthday_friends = filter(
-            lambda f: self.is_birthday(local_tz_today, f.birthday),
+            lambda f: self._is_birthday(local_tz_today, f.birthday),
             friends,
         )
         greetings = map(
@@ -23,19 +23,19 @@ class Greeter:
         )
         self.greetings_notifier.notify(list(greetings))
 
-    def is_birthday(self, date, birthday):
+    def _is_birthday(self, date, birthday):
         return (
             birthday.day == date.day and birthday.month == date.month
-        ) or self.is_29th_feb_birthday_on_28th_feb_of_non_leap_year(date, birthday)
+        ) or self._is_29th_feb_birthday_on_28th_feb_of_non_leap_year(date, birthday)
 
-    def is_29th_feb_birthday_on_28th_feb_of_non_leap_year(self, date, birthday):
+    def _is_29th_feb_birthday_on_28th_feb_of_non_leap_year(self, date, birthday):
         return (
-            not self.is_leap(date.year)
+            not self._is_leap(date.year)
             and date.day == 28
             and birthday.day == 29
             and date.month == 2
             and birthday.month == 2
         )
 
-    def is_leap(self, year):
+    def _is_leap(self, year):
         return (year % 400 == 0) or (year % 100 != 0) and (year % 4 == 0)

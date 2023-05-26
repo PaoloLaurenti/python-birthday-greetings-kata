@@ -7,8 +7,8 @@ from tests.support.sms_service_test_double import SmsServiceTestDouble
 
 class TestSmsGreetingsNotifier:
     def test_greet_many_friends(self):
-        sms_service_spy = SmsServiceTestDouble()
-        notifier = SmsGreetingsNotifier(from_phone_number= "3225554447", sms_service=sms_service_spy)
+        sms_service_double = SmsServiceTestDouble()
+        notifier = SmsGreetingsNotifier(from_phone_number= "3225554447", sms_service=sms_service_double)
         greetings = [
             Greeting(
                 name="Franco Franchi",
@@ -25,6 +25,6 @@ class TestSmsGreetingsNotifier:
         ]
         notifier.notify(greetings)
 
-        sms = sms_service_spy.get_sent_sms()
+        sms = sms_service_double.get_spied_sent_sms()
         assert sms == [Sms(from_phone_number= "3225554447", to_phone_number="3338889991", text="Happy birthday Franco Franchi!"),
                        Sms(from_phone_number= "3225554447", to_phone_number="3337776662", text="Happy birthday Luciana Luciani!")]

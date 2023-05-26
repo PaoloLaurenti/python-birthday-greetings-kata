@@ -1,4 +1,4 @@
-from greeter.clock import Clock
+from greeter.time.clock import Clock
 
 
 class ClockTestDouble(Clock):

@@ -1,7 +1,7 @@
 import tempfile
 from datetime import date
 from greeter.friends.friend import Friend
-from greeter.friends.flat_file_friends_gateway import FlatFileFriendsGateway
+from greeter.friends.flat_file.flat_file_friends_gateway import FlatFileFriendsGateway
 
 
 class TestFlatFileFriendsGateway:
@@ -20,22 +20,29 @@ class TestFlatFileFriendsGateway:
 
             friends = gateway.get_friends()
 
-            assert len(friends) == 2
-            assert friends[0] == Friend(
-                name="Franco Franchi",
-                email="franco@franchi.com",
-                birthday=date(1974, 4, 22),
-                phone_number="3331112223"
-            )
-            assert friends[1] == Friend(
-                name="Luciana Luciani",
-                email="luciana@luciani.com",
-                birthday=date(1980, 6, 11),
-                phone_number="3335556664"
-            )
+            assert friends == [
+                Friend(
+                    name="Franco Franchi",
+                    email="franco@franchi.com",
+                    birthday=date(1974, 4, 22),
+                    phone_number="3331112223",
+                ),
+                Friend(
+                    name="Luciana Luciani",
+                    email="luciana@luciani.com",
+                    birthday=date(1980, 6, 11),
+                    phone_number="3335556664",
+                ),
+            ]
 
     def test_get_no_friends_data_from_empty_file(self):
         with tempfile.NamedTemporaryFile() as tmp:
+            tmp.writelines(
+                [
+                    b"last_name, first_name, date_of_birth, email, sms\n",
+                ]
+            )
+            tmp.seek(0)
             gateway = FlatFileFriendsGateway(tmp.name)
 
             friends = gateway.get_friends()
