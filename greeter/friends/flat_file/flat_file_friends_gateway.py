@@ -8,9 +8,9 @@ class FlatFileFriendsGateway(FriendsGateway):
         self.file_path = file_path
 
     def get_friends(self):
-        with open(self.file_path) as f:
+        with open(self.file_path, encoding="utf-8") as f:
             lines = f.readlines()[1:]
-            return list(map(lambda l: self._line_to_friend(l), lines))
+            return list(map(self._line_to_friend, lines))
 
     def _line_to_friend(self, line):
         line_data = list(map(lambda d: d.strip(), line.split(",")))
@@ -19,4 +19,9 @@ class FlatFileFriendsGateway(FriendsGateway):
         birthday = datetime.strptime(line_data[2], "%Y/%m/%d").date()
         email = line_data[3]
         phone_number = line_data[4]
-        return Friend(name=f"{first_name} {last_name}", email=email, birthday=birthday, phone_number=phone_number)
+        return Friend(
+            name=f"{first_name} {last_name}",
+            email=email,
+            birthday=birthday,
+            phone_number=phone_number,
+        )
