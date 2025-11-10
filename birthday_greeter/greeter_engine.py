@@ -1,7 +1,8 @@
+from birthday_greeter.greeter import Greeter
 from birthday_greeter.greetings.greeting import Greeting
 
 
-class GreeterEngine:
+class GreeterEngine(Greeter):
     def __init__(self, friends_gateway, clock, greetings_notifier):
         self.friends_gateway = friends_gateway
         self.clock = clock

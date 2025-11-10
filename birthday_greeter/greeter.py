@@ -1,3 +1,3 @@
 class Greeter:
-    def notify(self, greetings):
+    def run(self):
         raise NotImplementedError
