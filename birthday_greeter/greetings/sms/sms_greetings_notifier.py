@@ -1,4 +1,4 @@
-from greeter.greetings.sms.sms import Sms
+from birthday_greeter.greetings.sms.sms import Sms
 
 
 class SmsGreetingsNotifier:
@@ -7,7 +7,7 @@ class SmsGreetingsNotifier:
         self._sms_service = sms_service
 
     def notify(self, greetings):
-        sms = map(lambda g: self._greeting_to_sms(g), greetings)
+        sms = map(self._greeting_to_sms, greetings)
         for s in sms:
             self._sms_service.send(s)
 

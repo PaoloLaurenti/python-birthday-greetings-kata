@@ -1,16 +1,13 @@
-from greeter.greetings.greeting import Greeting
-from greeter.greetings.greetings_notifier import GreetingsNotifier
+from birthday_greeter.greetings.greeting import Greeting
 
 
 class GreeterEngine:
-    greetings_notifier: GreetingsNotifier
-
     def __init__(self, friends_gateway, clock, greetings_notifier):
         self.friends_gateway = friends_gateway
         self.clock = clock
         self.greetings_notifier = greetings_notifier
 
-    def send_greetings(self):
+    def run(self):
         local_tz_today = self.clock.local_tz_today()
         friends = self.friends_gateway.get_friends()
         birthday_friends = filter(
@@ -18,7 +15,12 @@ class GreeterEngine:
             friends,
         )
         greetings = map(
-            lambda f: Greeting(name=f.name, email=f.email, birthday=f.birthday, phone_number=f.phone_number),
+            lambda f: Greeting(
+                name=f.name,
+                email=f.email,
+                birthday=f.birthday,
+                phone_number=f.phone_number,
+            ),
             birthday_friends,
         )
         self.greetings_notifier.notify(list(greetings))

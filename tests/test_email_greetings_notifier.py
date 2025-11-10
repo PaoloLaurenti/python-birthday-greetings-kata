@@ -1,7 +1,7 @@
 from datetime import date
-from greeter.greetings.greeting import Greeting
-from greeter.greetings.emails.email import Email
-from greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
+from birthday_greeter.greetings.greeting import Greeting
+from birthday_greeter.greetings.emails.email import Email
+from birthday_greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
 from tests.support.mailer_test_double import MailerTestDouble
 
 

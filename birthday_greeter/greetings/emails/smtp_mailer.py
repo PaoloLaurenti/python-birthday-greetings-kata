@@ -1,7 +1,7 @@
-from email.mime.text import MIMEText
 import ssl
-from greeter.greetings.emails.mailer import Mailer
 import smtplib
+from email.mime.text import MIMEText
+from birthday_greeter.greetings.emails.mailer import Mailer
 
 
 class SmtpMailer(Mailer):
@@ -22,13 +22,15 @@ class SmtpMailer(Mailer):
         try:
             context = ssl.create_default_context()
 
-            with smtplib.SMTP(self.smtp_server_address, self.smtp_server_port) as server:
+            with smtplib.SMTP(
+                self.smtp_server_address, self.smtp_server_port
+            ) as server:
                 server.set_debuglevel(1)
                 server.ehlo()  # Can be omitted
                 server.starttls(context=context)
                 server.ehlo()  # Can be omitted
                 server.login(self.smtp_server_login, self.smtp_server_password)
                 server.sendmail(sender, receiver, message.as_string())
-            print('Sent')
+            print("Sent")
         except Exception as e:
-            print('error' + str(e))
+            print("error" + str(e))

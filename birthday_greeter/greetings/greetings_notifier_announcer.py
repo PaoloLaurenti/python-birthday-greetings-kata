@@ -1,4 +1,4 @@
-from greeter.greetings.greetings_notifier import GreetingsNotifier
+from birthday_greeter.greetings.greetings_notifier import GreetingsNotifier
 
 
 class GreetingsNotifierAnnouncer(GreetingsNotifier):
@@ -8,4 +8,3 @@ class GreetingsNotifierAnnouncer(GreetingsNotifier):
     def notify(self, greetings):
         for notifier in self._notifiers:
             notifier.notify(greetings)
-

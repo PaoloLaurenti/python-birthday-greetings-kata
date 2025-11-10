@@ -1,4 +1,4 @@
-from greeter.time.clock import Clock
+from birthday_greeter.time.clock import Clock
 
 
 class FakeImmutableClock(Clock):

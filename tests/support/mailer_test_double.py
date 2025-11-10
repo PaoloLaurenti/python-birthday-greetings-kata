@@ -1,4 +1,4 @@
-from greeter.greetings.emails.mailer import Mailer
+from birthday_greeter.greetings.emails.mailer import Mailer
 
 
 class MailerTestDouble(Mailer):

@@ -1,7 +1,6 @@
 import os
-from greeter.greetings.emails.email import Email
-from greeter.greetings.emails.smtp_mailer import SmtpMailer
-from collections import OrderedDict
+from birthday_greeter.greetings.emails.email import Email
+from birthday_greeter.greetings.emails.smtp_mailer import SmtpMailer
 
 smtp_config = {
     "smtp_server_address": os.environ["SMTP_SERVER_ADDRESS"],
@@ -19,6 +18,7 @@ mailer.send(
         text_body="Test text body",
     )
 )
+
 
 class SmtpServerConfig:
     smtp_server_address: str

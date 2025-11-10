@@ -1,7 +1,9 @@
 import tempfile
 from datetime import date
-from greeter.friends.friend import Friend
-from greeter.friends.flat_file.flat_file_friends_gateway import FlatFileFriendsGateway
+from birthday_greeter.friends.flat_file.flat_file_friends_gateway import (
+    FlatFileFriendsGateway,
+)
+from birthday_greeter.friends.friend import Friend
 
 
 class TestFlatFileFriendsGateway:

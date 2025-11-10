@@ -1,4 +1,5 @@
-from greeter.greetings.greetings_notifier import GreetingsNotifier
+from birthday_greeter.greetings.greetings_notifier import GreetingsNotifier
+
 
 class GreetingsNotifierTestDouble(GreetingsNotifier):
     def __init__(self):

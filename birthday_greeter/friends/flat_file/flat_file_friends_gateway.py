@@ -1,6 +1,6 @@
 from datetime import datetime
-from greeter.friends.friend import Friend
-from greeter.friends.friends_gateway import FriendsGateway
+from birthday_greeter.friends.friend import Friend
+from birthday_greeter.friends.friends_gateway import FriendsGateway
 
 
 class FlatFileFriendsGateway(FriendsGateway):

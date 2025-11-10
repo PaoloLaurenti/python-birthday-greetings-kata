@@ -1,5 +1,5 @@
-from greeter.greetings.emails.email import Email
-from greeter.greetings.greetings_notifier import GreetingsNotifier
+from birthday_greeter.greetings.emails.email import Email
+from birthday_greeter.greetings.greetings_notifier import GreetingsNotifier
 
 
 class EmailGreetingsNotifier(GreetingsNotifier):
@@ -8,7 +8,7 @@ class EmailGreetingsNotifier(GreetingsNotifier):
         self.mailer = mailer
 
     def notify(self, greetings):
-        emails = map(lambda g: self._greeting_to_email(g), greetings)
+        emails = map(self._greeting_to_email, greetings)
         for email in emails:
             self.mailer.send(email)
 

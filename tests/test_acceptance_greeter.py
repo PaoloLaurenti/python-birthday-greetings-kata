@@ -1,13 +1,21 @@
 from datetime import date
 import tempfile
-from greeter.friends.flat_file.flat_file_friends_gateway import FlatFileFriendsGateway
-from greeter.greeter_engine import GreeterEngine
-from greeter.greetings.emails.email import Email
-from greeter.greetings.emails.email_greetings_notifier import EmailGreetingsNotifier
-from greeter.greetings.greetings_notifier_announcer import GreetingsNotifierAnnouncer
-from greeter.greetings.logs.greetings_notifier_logger import GreetingsNotifierLogger
-from greeter.greetings.sms.sms import Sms
-from greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
+from birthday_greeter.friends.flat_file.flat_file_friends_gateway import (
+    FlatFileFriendsGateway,
+)
+from birthday_greeter.greeter_engine import GreeterEngine
+from birthday_greeter.greetings.emails.email import Email
+from birthday_greeter.greetings.emails.email_greetings_notifier import (
+    EmailGreetingsNotifier,
+)
+from birthday_greeter.greetings.greetings_notifier_announcer import (
+    GreetingsNotifierAnnouncer,
+)
+from birthday_greeter.greetings.logs.greetings_notifier_logger import (
+    GreetingsNotifierLogger,
+)
+from birthday_greeter.greetings.sms.sms import Sms
+from birthday_greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
 from tests.support.fake_immutable_clock import FakeImmutableClock
 from tests.support.mailer_test_double import MailerTestDouble
 from tests.support.sms_service_test_double import SmsServiceTestDouble
@@ -36,12 +44,18 @@ class TestAcceptanceGreeter:
             sms_greetings_notifier = SmsGreetingsNotifier(
                 from_phone_number="3225554447", sms_service=sms_service_double
             )
-            greetings_notifier_announcer = GreetingsNotifierAnnouncer([email_greetings_notifier, sms_greetings_notifier])
-            greetings_notifier_logger = GreetingsNotifierLogger(greetings_notifier_announcer)
+            greetings_notifier_announcer = GreetingsNotifierAnnouncer(
+                [email_greetings_notifier, sms_greetings_notifier]
+            )
+            greetings_notifier_logger = GreetingsNotifierLogger(
+                greetings_notifier_announcer
+            )
 
-            greeter = GreeterEngine(friends_gateway, immutable_clock, greetings_notifier_logger)
+            greeter_engine = GreeterEngine(
+                friends_gateway, immutable_clock, greetings_notifier_logger
+            )
 
-            greeter.send_greetings()
+            greeter_engine.run()
 
             emails = mailer_double.get_spied_sent_emails()
             sms = sms_service_double.get_spied_sent_sms()

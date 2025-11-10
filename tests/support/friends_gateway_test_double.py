@@ -1,4 +1,5 @@
-from greeter.friends.friends_gateway import FriendsGateway
+from birthday_greeter.friends.friends_gateway import FriendsGateway
+
 
 class FriendsGatewayTestDouble(FriendsGateway):
     def __init__(self):
