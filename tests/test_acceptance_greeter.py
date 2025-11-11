@@ -1,5 +1,6 @@
 from datetime import date
 import tempfile
+from birthday_greeter.cli.cli_greeter import CliGreeter
 from birthday_greeter.friends.flat_file.flat_file_friends_gateway import (
     FlatFileFriendsGateway,
 )
@@ -54,8 +55,9 @@ class TestAcceptanceGreeter:
             greeter_engine = GreeterEngine(
                 friends_gateway, immutable_calendar, greetings_notifier_logger
             )
+            cli_greeter = CliGreeter()
 
-            greeter_engine.run()
+            cli_greeter.run(greeter_engine)
 
             emails = mailer_double.get_spied_sent_emails()
             sms = sms_service_double.get_spied_sent_sms()
