@@ -1,9 +1,22 @@
-class CliGreeter:
-    def __init__(self, greeter):
-        self.greeter = greeter
+import argparse
+from birthday_greeter.cli.birthday_greeter_config import BirthdayGreeterConfig
 
-    def run(self):
+
+class CliGreeter:
+    def run(self, greeter):
         print("Sending birthday greetings...")
-        self.greeter.run()
+        greeter.run()
         print("Birthday Greetings sent.")
         return 0
+
+    def get_config(self):
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-f")
+        parser.add_argument("-s")
+        parser.add_argument("-m")
+        args = parser.parse_args()
+        return BirthdayGreeterConfig(
+            friends_file_path=args.f,
+            email_sender=args.m,
+            sms_sender=args.s,
+        )
