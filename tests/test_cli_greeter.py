@@ -1,4 +1,3 @@
-# from birthday_greeter.cli import cli_greeter
 import sys
 from birthday_greeter.cli.birthday_greeter_config import BirthdayGreeterConfig
 from birthday_greeter.cli.cli_greeter import CliGreeter
