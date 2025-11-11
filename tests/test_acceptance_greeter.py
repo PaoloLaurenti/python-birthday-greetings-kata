@@ -16,7 +16,7 @@ from birthday_greeter.greetings.logs.greetings_notifier_logger import (
 )
 from birthday_greeter.greetings.sms.sms import Sms
 from birthday_greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
-from tests.support.fake_immutable_clock import FakeImmutableClock
+from tests.support.fake_immutable_calendar import FakeImmutableCalendar
 from tests.support.mailer_test_double import MailerTestDouble
 from tests.support.sms_service_test_double import SmsServiceTestDouble
 
@@ -35,7 +35,7 @@ class TestAcceptanceGreeter:
             tmp.seek(0)
 
             friends_gateway = FlatFileFriendsGateway(tmp.name)
-            immutable_clock = FakeImmutableClock(date(2023, 4, 22))
+            immutable_calendar = FakeImmutableCalendar(date(2023, 4, 22))
             mailer_double = MailerTestDouble()
             email_greetings_notifier = EmailGreetingsNotifier(
                 email_from="greeter@kata.com", mailer=mailer_double
@@ -52,7 +52,7 @@ class TestAcceptanceGreeter:
             )
 
             greeter_engine = GreeterEngine(
-                friends_gateway, immutable_clock, greetings_notifier_logger
+                friends_gateway, immutable_calendar, greetings_notifier_logger
             )
 
             greeter_engine.run()

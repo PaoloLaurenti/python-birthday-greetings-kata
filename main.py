@@ -17,7 +17,7 @@ from birthday_greeter.greetings.logs.greetings_notifier_logger import (
 )
 from birthday_greeter.greetings.sms.sms_greetings_notifier import SmsGreetingsNotifier
 from birthday_greeter.greetings.sms.sms_service import SmsService
-from birthday_greeter.time.clock import Clock
+from birthday_greeter.time.calendar import Calendar
 
 
 class RealMailer(Mailer):
@@ -34,7 +34,7 @@ def main():
     cli_greeter = CliGreeter()
     greeter_config = cli_greeter.get_config()
     friends_gateway = FlatFileFriendsGateway(greeter_config.friends_file_path)
-    clock = Clock()
+    calendar = Calendar()
     mailer = RealMailer()
     email_greetings_notifier = EmailGreetingsNotifier(
         email_from=greeter_config.email_sender, mailer=mailer
@@ -48,7 +48,7 @@ def main():
     )
     greetings_notifier_logger = GreetingsNotifierLogger(greetings_notifier_announcer)
 
-    greeter_engine = GreeterEngine(friends_gateway, clock, greetings_notifier_logger)
+    greeter_engine = GreeterEngine(friends_gateway, calendar, greetings_notifier_logger)
 
     cli_greeter.run(greeter_engine)
     return 0

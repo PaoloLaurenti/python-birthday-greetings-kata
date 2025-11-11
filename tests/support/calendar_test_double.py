@@ -1,7 +1,7 @@
-from birthday_greeter.time.clock import Clock
+from birthday_greeter.time.calendar import Calendar
 
 
-class ClockTestDouble(Clock):
+class CalendarTestDouble(Calendar):
     def __init__(self):
         self.stubbed_local_tz_today = None
 

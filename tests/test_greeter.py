@@ -2,7 +2,7 @@ from datetime import date
 from birthday_greeter.friends.friend import Friend
 from birthday_greeter.greeter_engine import GreeterEngine
 from birthday_greeter.greetings.greeting import Greeting
-from tests.support.clock_test_double import ClockTestDouble
+from tests.support.calendar_test_double import CalendarTestDouble
 from tests.support.friends_gateway_test_double import FriendsGatewayTestDouble
 from tests.support.greetings_notifier_test_double import GreetingsNotifierTestDouble
 
@@ -31,11 +31,11 @@ class TestGreeterEngine:
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
-        clock_double = ClockTestDouble()
-        clock_double.stub_local_tz_today(date(2023, 4, 22))
+        calendar_double = CalendarTestDouble()
+        calendar_double.stub_local_tz_today(date(2023, 4, 22))
         greetings_notifier_double = GreetingsNotifierTestDouble()
         greeter_engine = GreeterEngine(
-            friends_gateway_double, clock_double, greetings_notifier_double
+            friends_gateway_double, calendar_double, greetings_notifier_double
         )
 
         greeter_engine.run()
@@ -73,11 +73,11 @@ class TestGreeterEngine:
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
-        clock_double = ClockTestDouble()
-        clock_double.stub_local_tz_today(date(2023, 1, 1))
+        calendar_double = CalendarTestDouble()
+        calendar_double.stub_local_tz_today(date(2023, 1, 1))
         greetings_notifier_double = GreetingsNotifierTestDouble()
         greeter_engine = GreeterEngine(
-            friends_gateway_double, clock_double, greetings_notifier_double
+            friends_gateway_double, calendar_double, greetings_notifier_double
         )
 
         greeter_engine.run()
@@ -102,11 +102,11 @@ class TestGreeterEngine:
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
-        clock_double = ClockTestDouble()
-        clock_double.stub_local_tz_today(date(2024, 2, 29))
+        calendar_double = CalendarTestDouble()
+        calendar_double.stub_local_tz_today(date(2024, 2, 29))
         greetings_notifier_double = GreetingsNotifierTestDouble()
         greeter_engine = GreeterEngine(
-            friends_gateway_double, clock_double, greetings_notifier_double
+            friends_gateway_double, calendar_double, greetings_notifier_double
         )
 
         greeter_engine.run()
@@ -138,11 +138,11 @@ class TestGreeterEngine:
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
-        clock_double = ClockTestDouble()
-        clock_double.stub_local_tz_today(date(2023, 2, 28))
+        calendar_double = CalendarTestDouble()
+        calendar_double.stub_local_tz_today(date(2023, 2, 28))
         greetings_notifier_double = GreetingsNotifierTestDouble()
         greeter_engine = GreeterEngine(
-            friends_gateway_double, clock_double, greetings_notifier_double
+            friends_gateway_double, calendar_double, greetings_notifier_double
         )
 
         greeter_engine.run()
@@ -174,11 +174,11 @@ class TestGreeterEngine:
             ),
         ]
         friends_gateway_double.stub_friends(stubbed_friends)
-        clock_double = ClockTestDouble()
-        clock_double.stub_local_tz_today(date(2024, 2, 28))
+        calendar_double = CalendarTestDouble()
+        calendar_double.stub_local_tz_today(date(2024, 2, 28))
         greetings_notifier_double = GreetingsNotifierTestDouble()
         greeter_engine = GreeterEngine(
-            friends_gateway_double, clock_double, greetings_notifier_double
+            friends_gateway_double, calendar_double, greetings_notifier_double
         )
 
         greeter_engine.run()

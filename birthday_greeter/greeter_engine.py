@@ -3,13 +3,13 @@ from birthday_greeter.greetings.greeting import Greeting
 
 
 class GreeterEngine(Greeter):
-    def __init__(self, friends_gateway, clock, greetings_notifier):
+    def __init__(self, friends_gateway, calendar, greetings_notifier):
         self.friends_gateway = friends_gateway
-        self.clock = clock
+        self.calendar = calendar
         self.greetings_notifier = greetings_notifier
 
     def run(self):
-        local_tz_today = self.clock.local_tz_today()
+        local_tz_today = self.calendar.local_tz_today()
         friends = self.friends_gateway.get_friends()
         birthday_friends = filter(
             lambda f: self._is_birthday(local_tz_today, f.birthday),

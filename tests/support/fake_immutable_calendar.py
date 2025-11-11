@@ -1,7 +1,7 @@
-from birthday_greeter.time.clock import Clock
+from birthday_greeter.time.calendar import Calendar
 
 
-class FakeImmutableClock(Clock):
+class FakeImmutableCalendar(Calendar):
     def __init__(self, date):
         self.date = date
 
